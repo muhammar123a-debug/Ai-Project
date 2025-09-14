@@ -30,10 +30,10 @@ def insert_entry(date, journal, intention, dream, priorities, reflection):
     conn.close()
     print("✅ Entry saved.")
 
-def fetch_entry(date):
+def fetch_entries():
     conn = sqlite3.connect(DB)
     cursor = conn.cursor()
-    cursor.execute("SELECT * FROM entries WHERE date = ?", (date,))
-    entry = cursor.fetchone()
+    cursor.execute("SELECT * FROM entries ORDER BY date DESC")
+    rows = cursor.fetchall()
     conn.close()
-    return entry
+    return rows

@@ -1,8 +1,7 @@
 import streamlit as st
 import datetime
 from agent import reflection_chain
-from db import insert_entry, fetch_entry
-
+from db import insert_entry, fetch_entries  # plural wala use karna
 
 st.set_page_config(page_title="Daily Reflection Agent", layout="centered")
 
@@ -25,15 +24,16 @@ if submitted:
             "dream": dream,
             "priorities": priorities
         })
-        today = datetime.date.today().isoformat() 
+        today = datetime.date.today().isoformat()
+
         # Save entry to database
-        insert_entry(today, journal, intention, dream, priorities, response)
+        insert_entry(today, journal, intention, dream, priorities, str(response))
 
         st.success("✅ Strategy Generated!")
         st.write(response)
 
 # History Section
 st.subheader("📂 Previous Reflections")
-entries = fetch_entry()
+entries = fetch_entries()  # ab plural wala function se sari history milegi
 for e in entries:
     st.write(e)
