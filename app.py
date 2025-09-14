@@ -3,15 +3,12 @@ import datetime
 from agent import reflection_chain
 from db import insert_entry, fetch_entries, init_db
 
-st.set_page_config(page_title="Daily Reflection Agent", layout="centered")
-
-st.title("🧘 Daily Reflection & Planning Assistant")
-
-
 # Initialize DB
 init_db()
 
 st.set_page_config(page_title="Daily Reflection Agent", layout="centered")
+
+st.title("🧘 Daily Reflection & Planning Assistant")
 
 # Input form
 with st.form("reflection_form"):
@@ -38,8 +35,15 @@ if submitted:
         st.success("✅ Strategy Generated!")
         st.write(response)
 
-# History Section
-st.subheader("📂 Previous Reflections")
-entries = fetch_entries()  # ab plural wala function se sari history milegi
-for e in entries:
-    st.write(e)
+# ===========================
+# 📂 Sidebar: Previous Reflections
+# ===========================
+st.sidebar.title("📂 Previous Reflections")
+entries = fetch_entries()
+
+if entries:
+    for e in entries:
+        st.sidebar.markdown(f"**{e[1]}**")  # date
+        st.sidebar.caption(f"📝 {e[2][:40]}...")  # journal short preview
+else:
+    st.sidebar.info("No reflections saved yet.")
