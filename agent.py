@@ -6,8 +6,7 @@ from langchain.prompts import PromptTemplate
 from langchain_google_genai import ChatGoogleGenerativeAI
 
 # Import DB functions
-from db import init_db, insert_entry, fetch_entry
-
+from db import init_db, insert_entry, fetch_entries
 
 api_key = st.secrets["GOOGLE_API_KEY"]
 
@@ -69,5 +68,5 @@ if __name__ == "__main__":
 
     # Verify
     print("\n=== Saved Entry from DB ===")
-    saved = fetch_entry(today)
+    saved = fetch_entries(today)
     print(saved)
