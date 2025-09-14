@@ -1,11 +1,17 @@
 import streamlit as st
 import datetime
 from agent import reflection_chain
-from db import insert_entry, fetch_entries  # plural wala use karna
+from db import insert_entry, fetch_entries, init_db
 
 st.set_page_config(page_title="Daily Reflection Agent", layout="centered")
 
 st.title("🧘 Daily Reflection & Planning Assistant")
+
+
+# Initialize DB
+init_db()
+
+st.set_page_config(page_title="Daily Reflection Agent", layout="centered")
 
 # Input form
 with st.form("reflection_form"):
