@@ -1,6 +1,6 @@
 import streamlit as st
 from agent import reflection_chain
-from db import insert_entry, fetch_entries
+from db import insert_entry, fetch_entry
 
 
 st.set_page_config(page_title="Daily Reflection Agent", layout="centered")

@@ -8,7 +8,6 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 # Import DB functions
 from db import init_db, insert_entry, fetch_entry
 
-# 1. Load API Key
 
 api_key = st.secrets["GOOGLE_API_KEY"]
 
