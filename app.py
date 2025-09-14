@@ -34,7 +34,6 @@ if submitted:
 
 # History Section
 st.subheader("📂 Previous Reflections")
-entries = fetch_entries()
+entries = fetch_entry()
 for e in entries:
-    st.write(f"📝 Journal: {e[1]} | 🎯 Intention: {e[2]} | 📌 Priorities: {e[4]}")
-    st.text_area("AI Reflection", e[5], height=120, disabled=True)
+    st.write(e)
