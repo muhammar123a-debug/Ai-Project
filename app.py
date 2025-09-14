@@ -1,4 +1,5 @@
 import streamlit as st
+import datetime
 from agent import reflection_chain
 from db import insert_entry, fetch_entry
 
@@ -24,9 +25,9 @@ if submitted:
             "dream": dream,
             "priorities": priorities
         })
-
+        today = datetime.date.today().isoformat() 
         # Save entry to database
-        insert_entry(journal, intention, dream, priorities, response)
+        insert_entry(today, journal, intention, dream, priorities, response)
 
         st.success("✅ Strategy Generated!")
         st.write(response)
